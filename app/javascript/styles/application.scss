@@ -1,0 +1,56 @@
+@import "~bootstrap/scss/bootstrap";
+
+
+/*rule to center an element*/
+
+.center-element{
+	margin: 0 auto !important;
+	width: 80%;
+}
+
+.principal-margin{
+  margin-top:  80px !important;
+}
+
+#main-container{
+	margin-top:  80px !important;
+
+}
+
+#logo{
+	/*float: left;*/
+	background-image: url("../images/logo.jpg");
+	background-position: center center;
+	background-repeat: no-repeat;
+	background-size: cover;
+	height: 451px;
+}
+
+
+
+/*sticky footer styles*/
+html {
+  position: relative;
+  min-height: 100%;
+}
+body {
+  /* Margin bottom by footer height */
+  margin-bottom: 60px;
+}
+.footer {
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+  /* Set the fixed height of the footer here */
+  height: 60px;
+  line-height: 60px; /* Vertically center the text there */
+  background-color: #212529;
+  color: #ffffff;
+}
+
+/*
+the rules down this line defines heigth for text area control 
+*/
+.text-area-height{
+  height: 200px !important;
+}
