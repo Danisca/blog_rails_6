@@ -1,5 +1,5 @@
 class ArticlesController < ApplicationController
-	before_action :find_model, only: [:edit,:show,:update,:delete]
+	before_action :find_model, only: [:edit,:show,:update,:destroy]
 
 	def index
 		@articles = Article.all
@@ -7,10 +7,6 @@ class ArticlesController < ApplicationController
 
 	def new
 		@article = Article.new
-	end
-
-	def show
-		
 	end
 
 	def create
@@ -32,8 +28,8 @@ class ArticlesController < ApplicationController
 		end
 	end
 
-        def delete
-          @article.destroy()
+        def destroy
+          @article.destroy
           redirect_to articles_path
         end
 
