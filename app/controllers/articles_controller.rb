@@ -7,6 +7,7 @@ class ArticlesController < ApplicationController
 
 	def new
 		@article = Article.new
+		# byebug
 	end
 
 	def create
