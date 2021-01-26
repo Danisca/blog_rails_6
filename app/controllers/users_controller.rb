@@ -1,4 +1,6 @@
 class UsersController < ApplicationController
+	before_action :find_user, only: [:edit,:show]
+
 	def new
 		@user = User.new
 		# puts("#{@user} PWD")
@@ -15,9 +17,27 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def edit
+		
+	end
+
+	def update
+		if @user = User.update(set_user_fields)
+			flash[:notice] = "User updated successfully"
+			redirect_to articles_path
+		else
+			render 'edit'
+		end
+	end
+
+
 	private
 
 		def set_user_fields
 			params.require(:user).permit(:username,:email,:password)
+		end
+
+		def find_user
+			@user = User.find(params[:id])
 		end
 end

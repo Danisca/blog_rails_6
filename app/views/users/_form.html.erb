@@ -16,7 +16,8 @@
 					<%=f.password_field :password,placeholder: "password",class: "form-control col-10"%>
 				</div>
 				<div class="form-group row justify-content-center">
-					<%=f.submit "Sign Up" , class: "btn btn-lg btn-light"%>
+					<!-- the method below, is to check if the method that call the partial is new or edit and display the right text in the submit botton-->
+					<%=f.submit(@user.new_record? ? "Sign Up" : "Update Account" , class: "btn btn-lg btn-light")%>
 				</div>
 			<%end%>
 		</div>
