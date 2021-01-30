@@ -1,4 +1,10 @@
 <h3 class="text-center mt-2 p-2">
 	Articles Listing
 </h3>
+<div class="apple_pagination ">
+    <%= will_paginate @articles, :container => false %>
+</div>
 <%=render 'listing'%>
+<div class="apple_pagination ">
+    <%= will_paginate @articles, :container => false %>
+</div>

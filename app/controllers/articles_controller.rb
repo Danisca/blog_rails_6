@@ -2,7 +2,13 @@ class ArticlesController < ApplicationController
 	before_action :find_model, only: [:edit,:show,:update,:destroy]
 
 	def index
-		@articles = Article.all
+		# @articles = Article.all
+		# the commented lines are the way to use willpaginate Gem
+		# perform a paginated query:
+		# @posts = Post.paginate(page: params[:page])
+
+		# or, use an explicit "per page" limit:
+		@articles = Article.paginate(page: params[:page], per_page: 3)
 	end
 
 	def new
@@ -12,6 +18,8 @@ class ArticlesController < ApplicationController
 
 	def create
 		@article = Article.new(articles_params)
+		@article.user_id = 4
+		# byebug
 		if @article.save
 			flash[:notice] = "Article was created succesfully"
 			redirect_to @article

@@ -2,11 +2,12 @@ class UsersController < ApplicationController
 	before_action :find_user, only: [:edit,:show]
 
 	def index
-		@users = User.all
+		# @users = User.all
+		@users = User.paginate(page: params[:page], per_page: 3)
 	end
 
 	def show
-		@articles = @user.articles 
+		@articles = @user.articles.paginate(page: params[:page], per_page: 3)
 		#line 6 could be made changing the _listing in partial the @article 
 		#variable which wait for to a generic variable like the shared/errors partial
 	end
