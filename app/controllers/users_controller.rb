@@ -1,6 +1,13 @@
 class UsersController < ApplicationController
 	before_action :find_user, only: [:edit,:show]
 
+
+	def show
+		@articles = @user.articles 
+		#line 6 could be made changing the _listing in partial the @article 
+		#variable which wait for to a generic variable like the shared/errors partial
+	end
+
 	def new
 		@user = User.new
 		# puts("#{@user} PWD")
