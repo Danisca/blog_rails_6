@@ -21,7 +21,7 @@ class UsersController < ApplicationController
 		@user = User.new(set_user_fields)
 		if @user.save
 			flash[:notice] = "Welcome to the blog #{@user.username}, you have successfully signup"
-			redirect_to articles_path
+			redirect_to @user
 		else
 			render 'new'
 		end
@@ -34,7 +34,7 @@ class UsersController < ApplicationController
 	def update
 		if @user = User.update(set_user_fields)
 			flash[:notice] = "User updated successfully"
-			redirect_to articles_path
+			redirect_to @user
 		else
 			render 'edit'
 		end
