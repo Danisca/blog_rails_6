@@ -18,7 +18,7 @@ class ArticlesController < ApplicationController
 
 	def create
 		@article = Article.new(articles_params)
-		@article.user_id = 4
+                @article.user_id = current_user.id
 		# byebug
 		if @article.save
 			flash[:notice] = "Article was created succesfully"
