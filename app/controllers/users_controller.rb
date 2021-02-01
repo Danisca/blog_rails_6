@@ -1,5 +1,7 @@
 class UsersController < ApplicationController
-	before_action :find_user, only: [:edit,:show]
+	before_action :find_user, only: [:edit,:show,:update,:destroy]
+        before_action :require_user, except: [:index,:show,:new,:create]
+        before_action :require_owner, only: [:edit,:update,:destroy]
 
 	def index
 		# @users = User.all
@@ -23,7 +25,7 @@ class UsersController < ApplicationController
 		if @user.save
                         session[:user_id] = @user.id
 			flash[:notice] = "Welcome to the blog #{@user.username}, you have successfully signup"
-			redirect_to @user
+                        redirect_to @user
 		else
 			render 'new'
 		end
@@ -34,7 +36,7 @@ class UsersController < ApplicationController
 	end
 
 	def update
-		if @user = User.update(set_user_fields)
+		if @user.update(set_user_fields)
 			flash[:notice] = "User updated successfully"
 			redirect_to @user
 		else
@@ -42,14 +44,29 @@ class UsersController < ApplicationController
 		end
 	end
 
+	def destroy
+          @user.destroy
+          session[:user_id] = nil
+          flash[:notice] = "Account successfully deleted and its articles"
+          redirect_to root_path
+	end
+
 
 	private
 
-		def set_user_fields
-			params.require(:user).permit(:username,:email,:password)
-		end
+	  def set_user_fields
+	    params.require(:user).permit(:username,:email,:password)
+	  end
 
-		def find_user
-			@user = User.find(params[:id])
-		end
+	def find_user
+          @user = User.find(params[:id])
+	end
+
+	def require_owner 
+          #this method checks if the user is the owner of the profile, and if it is then permit the :edit,:update,:destroy
+            if current_user != @user
+              flash[:error] = "you can only edit or delete your own profile"
+              redirect_to @user
+            end
+	end
 end

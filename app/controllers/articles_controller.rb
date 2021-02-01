@@ -1,5 +1,8 @@
 class ArticlesController < ApplicationController
 	before_action :find_model, only: [:edit,:show,:update,:destroy]
+        before_action :require_user, except: [:index,:show]
+        before_action :require_owner, only: [:edit,:update,:destroy]
+
 
 	def index
 		# @articles = Article.all
@@ -50,5 +53,12 @@ class ArticlesController < ApplicationController
 
 	def articles_params
 		params.require(:article).permit(:title,:description)
+	end
+
+	def require_owner 
+            if current_user != @article.user	
+              flash[:error] = "you can only edit or delete your own articles"
+              redirect_to @article
+            end
 	end
 end

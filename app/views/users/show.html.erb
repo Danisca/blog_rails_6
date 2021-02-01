@@ -1,8 +1,11 @@
 <h2 class="text-center"><%=@user.username%>'s profile</h2>
 <%=gravatar_for(@user,size:200)%>
 <div class="text-center mt-4 mb-4">
+  <%if logged_in? and current_user == @user%>
 	<%=link_to 'edit profile',edit_user_path(@user), class: "btn btn-info"  %>
+        <%=link_to 'delete your profile',user_path(@user),method: :delete, class: "btn btn-danger", data: {confirm: "are you sure about deleting your account?"}%>
 	<%=link_to 'Create an Article',new_article_path, class: "btn btn-success"  %>
+  <%end%>
 </div>
 <h3 class="text-center">Articles</h3>
 <%=render 'articles/listing'%>

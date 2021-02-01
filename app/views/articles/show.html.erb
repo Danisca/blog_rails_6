@@ -8,8 +8,10 @@
       <div class="card-body">
         <h1><%= @article.title %></h1>
         <p class="card-text text-left"><%=@article.description%></p>
+    <%if logged_in? and @article.user == current_user%>
         <%=link_to 'edit',edit_article_path(@article), class: "btn btn-warning"  %>&nbsp;&nbsp;
         <%=link_to 'delete',article_path(@article), class: "btn btn-danger", method: :delete%>
+    <%end%>
       </div>
       <div class="card-footer text-muted">
         <%= time_ago_in_words(@article.created_at)%>
