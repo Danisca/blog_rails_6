@@ -20,7 +20,7 @@
             </li>
         <%if logged_in?%>
             <li class="nav-item dropdown">
-              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%=current_user.username%></a>
+              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%="Admin " if current_user.user_role == "admin"%> <%=current_user.username%></a>
               <div class="dropdown-menu" aria-labelledby="dropdown01">
               <%=link_to "profile", user_path(current_user),class: "dropdown-item"%>
               <%=link_to 'log out', logout_path,class: "dropdown-item",method: :delete%>

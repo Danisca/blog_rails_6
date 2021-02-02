@@ -46,7 +46,9 @@ class UsersController < ApplicationController
 
 	def destroy
           @user.destroy
-          session[:user_id] = nil
+          #the next to lines are posibles solucions of the log out when delete an user using and admin
+          #session[:user_id] = nil if current_user.user_role != "admin"
+          session[:user_id] = nil if current_user == @user
           flash[:notice] = "Account successfully deleted and its articles"
           redirect_to root_path
 	end
@@ -64,7 +66,7 @@ class UsersController < ApplicationController
 
 	def require_owner 
           #this method checks if the user is the owner of the profile, and if it is then permit the :edit,:update,:destroy
-            if current_user != @user
+          if current_user != @user and current_user.user_role != "admin"
               flash[:error] = "you can only edit or delete your own profile"
               redirect_to @user
             end

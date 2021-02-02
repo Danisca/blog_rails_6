@@ -56,7 +56,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def require_owner 
-            if current_user != @article.user	
+          if current_user != @article.user and !current_user.user_role == "admin"
               flash[:error] = "you can only edit or delete your own articles"
               redirect_to @article
             end
