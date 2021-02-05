@@ -18,6 +18,14 @@
                 <%=link_to "New", new_article_path(),class: "dropdown-item" if logged_in?%>
               </div>
             </li>
+            <li class="nav-item dropdown">
+              <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">Categories</a>
+              <div class="dropdown-menu" aria-labelledby="dropdown01">
+                <%=link_to "View all Categories", categories_path(),class: "dropdown-item"%>
+                <%=link_to "New", new_article_path(),class: "dropdown-item" if logged_in? and current_user.user_role == "admin"%>
+                  
+              </div>
+            </li>
         <%if logged_in?%>
             <li class="nav-item dropdown">
               <a class="nav-link dropdown-toggle" href="http://example.com" id="dropdown01" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false"><%="Admin " if current_user.user_role == "admin"%> <%=current_user.username%></a>
