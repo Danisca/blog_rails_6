@@ -1,0 +1,19 @@
+
+<div class="container text-white">
+  <div class="row justify-content-center">
+    <div class="col-10">
+      <%= render 'shared/errors', obj: @category%>
+      <%= form_with model: @category, class: "shadow p-5 mb-3 bg-dark rounded", local: true do |f|%>
+        <div class="form-group row">
+          <%=f.label :name, class: "col-1 col-form-inline"%>
+          <%=f.text_field :name, class: "form-control col-11", autofocus: "true"%>
+        </div>
+        <div class="form-group row justify-content-center">
+	  <%=f.submit  class: "btn btn-lg btn-light"%>
+
+        </div>
+      <%end%>
+    </div>
+  </div>
+
+</div>

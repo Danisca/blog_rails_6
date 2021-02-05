@@ -10,4 +10,8 @@ class ActiveSupport::TestCase
   fixtures :all
 
   # Add more helper methods to be used by all tests here...
+  def login_user_as(user)
+    #has to user the string of the user.password because of the password field is encrypted
+    post login_path, params: { session: {email: user.email, password: "password"}}
+  end
 end
