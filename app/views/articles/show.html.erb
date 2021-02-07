@@ -4,6 +4,11 @@
       <div class="card-header font-italic">
         by <%=@article.user.username%>
         <%=gravatar_for(@article.user)%>
+        <div class="my-3">
+          <!-- this  line rails internally supose that exist a partial in /views/categories/_category.html.erb -->
+          <!-- the @article.categories is like a each loop -->
+            <%= render @article.categories if @article.categories.any?%>
+        </div>
       </div>
       <div class="card-body">
         <h1><%= @article.title %></h1>

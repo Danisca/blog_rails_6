@@ -1,1 +1,7 @@
 <h2 class="text-center"><%=@category.name%></h2>
+<div class="text-center">
+  <%if logged_in? and ( current_user.user_role == "admin")%>
+     <%=link_to 'edit',edit_category_path(@category), class: "btn btn-warning"  %>&nbsp;&nbsp;
+  <%end%>
+</div>
+<%= render "articles/listing"  if !@articles.nil?%>

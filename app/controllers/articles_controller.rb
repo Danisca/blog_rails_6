@@ -22,7 +22,7 @@ class ArticlesController < ApplicationController
 	def create
 		@article = Article.new(articles_params)
                 @article.user_id = current_user.id
-		# byebug
+		#byebug
 		if @article.save
 			flash[:notice] = "Article was created succesfully"
 			redirect_to @article
@@ -52,7 +52,7 @@ class ArticlesController < ApplicationController
 	end
 
 	def articles_params
-		params.require(:article).permit(:title,:description)
+		params.require(:article).permit(:title,:description,category_ids: [])
 	end
 
 	def require_owner 
